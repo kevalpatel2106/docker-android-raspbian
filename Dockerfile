@@ -33,10 +33,10 @@ RUN mkdir -p $ANDROID_HOME/licenses/ && \
 
 # Install SDK Package
 RUN sdkmanager build-tools-${VERSION_BUILD_TOOLS}
-    sdkmanager android-${VERSION_TARGET_SDK}
-    sdkmanager "platform-tools" --verbose && \
-    sdkmanager "extras;android;m2repository" --verbose && \
-    sdkmanager "extras;google;m2repository" --verbose && \
-    sdkmanager "extras;google;google_play_services" --verbose && \
-    sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2" --verbose && \
-    sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.1" --verbose
+RUN sdkmanager android-${VERSION_TARGET_SDK}
+RUN sdkmanager "platform-tools" --verbose && \
+RUN sdkmanager "extras;android;m2repository" --verbose && \
+RUN sdkmanager "extras;google;m2repository" --verbose && \
+RUN sdkmanager "extras;google;google_play_services" --verbose && \
+RUN sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2" --verbose && \
+RUN sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.1" --verbose
