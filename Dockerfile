@@ -12,8 +12,9 @@ ENV ANDROID_HOME "/sdk"
 ENV PATH "$PATH:${ANDROID_HOME}/tools"
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
-RUN apt-get install -qqy --no-install-recommends \
+RUN apt-get install -y --no-install-recommends apt-utils
+RUN apt-get -qq update && \
+    apt-get install -y --no-install-recommends \
       bzip2 \
       curl \
       git-core \
@@ -36,7 +37,7 @@ RUN mkdir -p $ANDROID_HOME/licenses/ \
 ADD packages.txt /sdk
 RUN mkdir -p /root/.android && \
   touch /root/.android/repositories.cfg && \
-  ${ANDROID_HOME}/tools/bin/sdkmanager --update 
+  ${ANDROID_HOME}/tools/bin/sdkmanager --list 
 
 RUN while read -r package; do PACKAGES="${PACKAGES}${package} "; done < /sdk/packages.txt && \
     ${ANDROID_HOME}/tools/bin/sdkmanager ${PACKAGES}
