@@ -6,7 +6,7 @@
 
 FROM resin/raspberry-pi-openjdk:openjdk-8-jdk
 
-RUN apt-get install -y unzip
+RUN sudo apt-get install -y unzip
 
 ENV VERSION_BUILD_TOOLS "26.0.2"
 ENV VERSION_TARGET_SDK "26"
