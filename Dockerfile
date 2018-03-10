@@ -12,7 +12,6 @@ ENV ANDROID_HOME "/sdk"
 ENV PATH "$PATH:${ANDROID_HOME}/tools"
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get install -y --no-install-recommends apt-utils
 RUN apt-get -qq update && \
     apt-get install -y --no-install-recommends \
       bzip2 \
