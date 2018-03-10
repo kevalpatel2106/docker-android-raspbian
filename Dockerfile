@@ -19,6 +19,7 @@ RUN apt-get -qq update && \
       git-core \
       html2text \
       openjdk-8-jdk \
+      apt-utils \
       unzip \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
