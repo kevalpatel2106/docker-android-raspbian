@@ -11,6 +11,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -qq update && \
     apt-get install -y --no-install-recommends \
       bzip2 \
+      curl \
       wget \
       git-core \
       html2text \
@@ -38,15 +39,14 @@ RUN cd /opt && \
 
 # download and install Android SDK
 ENV VERSION_SDK_TOOLS "3859397"
-RUN mkdir -p /opt/android-sdk && cd /opt/android-sdk && \
-    wget -q https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_VERSION}.zip && \
-    unzip *tools*linux*.zip && \
-    rm *tools*linux*.zip
+RUN curl -s https://dl.google.com/android/repository/sdk-tools-linux-${VERSION_SDK_TOOLS}.zip > /sdk.zip && \
+    unzip /sdk.zip -d /sdk && \
+    rm -v /sdk.zip
 
 # set the environment variables
 ENV GRADLE_HOME /opt/gradle
 ENV KOTLIN_HOME /opt/kotlinc
-ENV ANDROID_HOME /opt/android-sdk
+ENV ANDROID_HOME "/sdk"
 ENV PATH ${PATH}:${GRADLE_HOME}/bin:${KOTLIN_HOME}/bin:${ANDROID_HOME}/emulator:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools/bin
 
 RUN mkdir -p ${ANDROID_HOME}/licenses/ \
