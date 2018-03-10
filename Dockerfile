@@ -12,14 +12,13 @@ ENV ANDROID_HOME "/sdk"
 ENV PATH "$PATH:${ANDROID_HOME}/tools"
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get -qq update && \
-    apt-get install -qqy --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
+RUN apt-get install -qqy --no-install-recommends \
       bzip2 \
       curl \
       git-core \
       html2text \
       openjdk-8-jdk \
-      apt-utils \
       unzip \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
